@@ -45,6 +45,9 @@ namespace CouchInvaders
             CanvasDrawingSession ds = args.DrawingSession;
 
             Size rtSize = sender.Size;
+            Size pixelSize = new Size(
+                sender.ConvertDipsToPixels((float)rtSize.Width, CanvasDpiRounding.Floor), 
+                sender.ConvertDipsToPixels((float)rtSize.Height, CanvasDpiRounding.Floor));
 
             // Background gradient.
             using (var brush = CanvasRadialGradientBrush.CreateRainbow(ds, 0))
@@ -58,7 +61,7 @@ namespace CouchInvaders
             }
 
             // Text label.
-            var label = string.Format("{0}\n{1:0} x {2:0}", "Couch Invaders!!!", rtSize.Width, rtSize.Height);
+            var label = string.Format("{0}\n{1:0} x {2:0}", "Couch Invaders by Dad and Riker!!!", pixelSize.Width, pixelSize.Height);
 
             ds.DrawText(label, rtSize.ToVector2() / 2, Colors.Black);
 
